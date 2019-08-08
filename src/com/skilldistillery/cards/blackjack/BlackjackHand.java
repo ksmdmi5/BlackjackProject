@@ -1,29 +1,21 @@
 package com.skilldistillery.cards.blackjack;
 
 import java.util.*;
-import com.skilldistillery.cards.common.*;
+import com.skilldistillery.cards.common.Hand;
+import com.skilldistillery.cards.common.Card;
 
 public class BlackjackHand extends Hand {
 	
 	int handValue;
 	
 	public BlackjackHand() {}
-	
-	
-	public boolean isBlackJack() {
-		return true;
-	}
-	
-	public boolean isBust() {
-		return true;
-	}
 
 	@Override
 	public int getHandValue() {
 		handValue = 0;
 		for (Card card : getCards()) {
 			handValue += card.getValue();
-		}
+		} 
 		return handValue;
 	}
 	
@@ -44,20 +36,6 @@ public class BlackjackHand extends Hand {
 		this.handValue = handValue;
 	}
 
-	@Override
-	public void addCard(Card card) {
-		super.addCard(card);
-	}
-
-	@Override
-	public void clear() {
-		super.clear();
-	}
-
-	@Override
-	public String toString() {
-		return super.toString();
-	}
 	
 
 }

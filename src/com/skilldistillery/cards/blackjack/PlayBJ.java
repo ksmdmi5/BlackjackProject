@@ -4,6 +4,6 @@ package com.skilldistillery.cards.blackjack;
 
 		public void checkHand(BlackjackHand playerhand);
 
-		void startHand(BlackjackHand playerhand);
+		boolean startHand(BlackjackHand playerhand);
 }
 

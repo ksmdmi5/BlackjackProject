@@ -2,6 +2,8 @@ package com.skilldistillery.cards.blackjack;
 
 import java.util.*;
 
+import com.skilldistillery.cards.common.Deck;
+
 public class BJApp {
 
 	Scanner kb = new Scanner(System.in);
@@ -20,9 +22,8 @@ public class BJApp {
 			System.out.println("* * * * * *");
 			System.out.println(" New Game");
 			System.out.println("* * * * * *");
-
 			dealer.startDealer(dealer.getDealerHand());
-			dealer.startPlayerHand(player.getPlayerHand());
+			player.startHand(player.getPlayerHand());
 		} while (menu(play));
 	}
 
@@ -49,36 +50,22 @@ public class BJApp {
 		return play;
 	}
 
+
 	public boolean menu(boolean play) {
-
+		int choice = 1;
 		while (play) {
-			int choice = 0;
-
 			while (player.playerHand.getHandValue() < 21) {
-				try {
-
-					System.out.println("Player Options: ");
-					System.out.println("1: Hit ME!");
-					System.out.println("2: Hold");
-					System.out.println("Enter choice: ");
-					choice = kb.nextInt();
-					switch (choice) {
-					case 1:
-						play = dealer.playerHit(player.getPlayerHand());
-						System.out.println("Your hand is " + player.playerHand.getHandValue());
-						break;
-					case 2:
-						System.out.println("Holding");
-						break;
-					default:
-						System.out.println("Invalid try again.");
-						return false;
-					}
-				} catch (InputMismatchException e) {
-					System.out.println("Enter a 1 or 2");
+				System.out.println("What would you like to do now?");
+				System.out.println("1: Hit");
+				System.out.println("2: Hold");
+				System.out.print("Enter your choice: ");
+				choice = kb.nextInt();
+				if (choice == 1) {
+					play = player.hitMe(player.getPlayerHand());
+				} else {
+					play = false;
 					break;
 				}
-
 			}
 			dealer.dealerTurn();
 
@@ -86,14 +73,17 @@ public class BJApp {
 			System.out.println("Play again (Y/N)?");
 
 			String cont = kb.next();
-			if (cont.equalsIgnoreCase("Y")) {
-				return true;
-			} else if (cont.equalsIgnoreCase("n")) {
-				System.out.println("Leaving table.");
-				kb.close();
-				return false;
-			} else {
-				System.out.println("Invalid try again.");
+			try {
+				if (cont.equalsIgnoreCase("Y")) {
+					return true;
+				} else if (cont.equalsIgnoreCase("n")) {
+					System.out.println("Leaving table.");
+					kb.close();
+					return false;
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("Y or N.");
+				break;
 			}
 		}
 		return false;

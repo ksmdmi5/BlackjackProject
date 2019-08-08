@@ -3,33 +3,36 @@ package com.skilldistillery.cards.common;
 import java.util.*;
 
 public abstract class Hand {
-		protected List<Card> cards;
-		
-		public Hand() {
-			cards = new ArrayList<>();
-		}
-		
-		public void addCard(Card card) {
-			 cards.add(card);
-		}
-		
-		public void setCards(List<Card> cards) {
-			this.cards = cards;
-		}
+	protected List<Card> hand = new ArrayList<>();;
 
-		public List<Card> getCards() {
-			return cards;
-		}
+	public Hand() {
+	}
 
-		public void clear() {
-			cards.clear();
-		}
-		
-		public abstract int getHandValue();
-		
-		public String toString() {
-			// TO DO LATER
-			return cards.toString();
-		}
+	public int getHandValue() {
+		return 0;
+	}
 
+	public void addCard(Card card) {
+		getHand().add(card);
+	}
+
+	public void clearHand() {
+		getHand().clear();
+	}
+
+	public List<Card> getCards() {
+		return getHand();
+	}
+
+	public String toString() {
+		StringBuilder handString = new StringBuilder();
+		for (Card card : getHand()) {
+			handString.append(card.toString());
+		}
+		return handString.toString();
+	}
+
+	public List<Card> getHand() {
+		return hand;
+	}
 }

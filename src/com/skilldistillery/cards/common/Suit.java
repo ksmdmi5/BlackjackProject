@@ -13,4 +13,8 @@ public enum Suit {
 		return name;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 }
